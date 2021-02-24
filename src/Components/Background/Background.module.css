@@ -1,0 +1,11 @@
+.fundo {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.pokebolas {
+  width: calc(100vw + 160px);
+  margin-left: -60px;
+}

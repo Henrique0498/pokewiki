@@ -1,0 +1,477 @@
+.imgPoke {
+  background-image: linear-gradient(
+    45deg,
+    rgb(0, 153, 255) 10%,
+    rgb(54, 171, 248) 90%
+  );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  margin: -95px auto 0 auto;
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: animePhoto 0.3s ease-in;
+}
+
+.imgPoke::before {
+  content: "";
+  width: 174px;
+  height: 174px;
+  position: absolute;
+  background-color: var(--black);
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-size: 172px;
+}
+
+.backgroundBaby,
+.backgroundLegendary,
+.backgroundMythical {
+  background-image: linear-gradient(
+    45deg,
+    rgb(0, 153, 255) 10%,
+    rgb(6, 102, 167) 90%
+  );
+}
+
+.backgroundBaby::before {
+  background-image: url("./../../Assets/Image/Svg/background/bgBaby.svg");
+}
+
+.backgroundLegendary::before {
+  background-image: url("./../../Assets/Image/Svg/background/bgLegendary.svg");
+}
+
+.backgroundMythical::before {
+  background-image: url("./../../Assets/Image/Svg/background/bgMythical.svg");
+}
+
+.backgroundDefault::before {
+  background-image: url("./../../Assets/Image/Svg/background/bgDefault.svg");
+  animation: rotation 3s linear infinite;
+}
+
+.imgPoke > img,
+.imgPoke > svg {
+  width: 130px;
+  height: 130px;
+  position: relative;
+}
+
+.nameContent,
+.namePoke {
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.namePoke,
+.namePoke::after,
+.nameLegendary ~ .nameIcon,
+.nameMythical ~ .nameIcon,
+.nameMythical ~ .nameIcon::after,
+.nameMythical ~ .nameIcon::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.namePoke,
+.namePoke ~ .nameIcon {
+  display: inline-flex;
+}
+
+.namePoke {
+  margin: 0;
+  min-width: 100px;
+  padding: 0 1px 0 0;
+  font-size: 30px;
+  text-transform: capitalize;
+}
+
+.namePoke::after {
+  position: absolute;
+  width: 110px;
+  height: 55px;
+  align-items: flex-end;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.nameBaby,
+.nameBaby::after {
+  content: "pokemon baby";
+  background: -webkit-linear-gradient(
+    0deg,
+    #4cbace,
+    var(--black),
+    var(--black),
+    rgb(190, 76, 190),
+    rgb(190, 76, 190),
+    var(--black),
+    var(--black),
+    #4cbace,
+    #4cbace,
+    var(--black),
+    var(--black),
+    var(--black)
+  );
+  filter: drop-shadow(0 0 0 #a3f1ff);
+  animation: animeTitleBaby 4s infinite linear;
+}
+
+.nameLegendary,
+.nameLegendary::after {
+  content: "pokemon lendário";
+  background: -webkit-linear-gradient(
+    0deg,
+    #248daa,
+    var(--black),
+    var(--black),
+    #248daa,
+    #248daa,
+    var(--black),
+    var(--black),
+    #248daa,
+    #248daa,
+    var(--black),
+    var(--black),
+    var(--black)
+  );
+  filter: drop-shadow(0 0 0 #73e1ff);
+  animation: animeTitleLegendary 4s infinite linear;
+}
+
+.nameMythical,
+.nameMythical::after {
+  content: "pokemon mítico";
+  background: -webkit-linear-gradient(
+    0deg,
+    #86030c,
+    var(--black),
+    var(--black),
+    #86030c,
+    #86030c,
+    var(--black),
+    var(--black),
+    #86030c,
+    #86030c,
+    var(--black),
+    var(--black),
+    var(--black)
+  );
+  filter: drop-shadow(0 0 0 #a86d6d);
+  animation: animeTitleMythical 4s infinite linear;
+}
+
+.nameBaby,
+.nameBaby::after,
+.nameLegendary,
+.nameLegendary::after,
+.nameMythical,
+.nameMythical::after {
+  background-size: 400%;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke-width: 0px;
+}
+
+.nameBaby ~ .nameIcon,
+.nameLegendary ~ .nameIcon,
+.nameMythical ~ .nameIcon {
+  width: 18px;
+  margin-top: 26px;
+  height: 24px;
+  background-size: 14px;
+  background-repeat: no-repeat;
+  background-position: right top;
+  position: absolute;
+}
+
+.nameMythical ~ .nameIcon,
+.nameMythical ~ .nameIcon::before,
+.nameMythical ~ .nameIcon::after {
+  width: 34px;
+  height: 45px;
+  background-size: 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.nameMythical ~ .nameIcon {
+  margin-top: 8px;
+  animation: animeIconMythical 10s infinite linear;
+}
+
+.nameMythical ~ .nameIcon::after {
+  content: "";
+  background-image: url("./../../Assets/Image/Images/background/flash.png");
+  position: absolute;
+  border-radius: 50%;
+  height: 34px;
+  animation: animeIconMythicalFlash 10s infinite linear;
+}
+
+.nameMythical ~ .nameIcon::before {
+  content: "";
+  background-image: url("./../../Assets/Image/Images/background/mythical.png");
+  position: absolute;
+  background-size: 34px;
+  animation: animeIconMythicalMew 10s infinite linear;
+}
+
+.nameLegendary ~ .nameIcon {
+  width: 30px;
+  height: 45px;
+  margin-top: 15px;
+  background-image: url("./../../Assets/Image/Svg/background/isLegendary.svg");
+  background-size: 30px;
+  filter: drop-shadow(0 0 0 #a3f1ff);
+  animation: animeIconLegendary 4s infinite linear;
+}
+
+.nameLegendary ~ .nameIcon::after {
+  content: "";
+  width: 22px;
+  height: 44px;
+  background-image: url("./../../Assets/Image/Svg/background/isLegendaryBgR.svg");
+  position: absolute;
+  background-size: 22px;
+  background-position: top right;
+  background-repeat: no-repeat;
+  animation: animeIconLegendaryR 0.5s infinite linear;
+}
+
+@keyframes animeIconLegendaryR {
+  50% {
+    width: 26px;
+    height: 50px;
+    background-position: top left;
+  }
+}
+
+.nameLegendary ~ .nameIcon::before {
+  content: "";
+  width: 25px;
+  height: 48px;
+  background-image: url("./../../Assets/Image/Svg/background/isLegendaryBgL.svg");
+  position: absolute;
+  background-size: 20px;
+  background-position: top right;
+  background-repeat: no-repeat;
+  animation: animeIconLegendaryL 0.5s infinite linear;
+}
+
+@keyframes animeIconLegendaryL {
+  50% {
+    width: 21px;
+    height: 42px;
+  }
+}
+
+.nameBaby ~ .nameIcon {
+  background-image: url("./../../Assets/Image/Svg/background/isBaby.svg");
+  filter: drop-shadow(0 0 0 #8aedff);
+  animation: animeIconBaby 4s infinite linear;
+}
+
+@keyframes animePhoto {
+  0% {
+    transform: rotateY(90deg);
+  }
+  50% {
+    transform: rotateY(90deg);
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: initial;
+  }
+}
+
+@keyframes animeTitleBaby {
+  0% {
+    background-position: 0% 50%;
+  }
+  1% {
+    filter: drop-shadow(0 0 0 rgb(255, 187, 255, 0.8));
+  }
+  25% {
+    filter: drop-shadow(0 0 15px rgb(255, 187, 255, 0.8));
+  }
+  49% {
+    filter: drop-shadow(0 0 0 rgb(255, 187, 255, 0.8));
+  }
+  50% {
+    filter: drop-shadow(0 0 0 #a3f1ff);
+  }
+  75% {
+    filter: drop-shadow(0 0 15px #a3f1ff);
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes animeIconBaby {
+  1% {
+    filter: drop-shadow(0 0 0 rgb(255, 187, 255));
+  }
+  25% {
+    filter: drop-shadow(0 0 15px rgb(255, 187, 255));
+  }
+  49% {
+    filter: drop-shadow(0 0 0 rgb(255, 187, 255));
+  }
+  50% {
+    filter: drop-shadow(0 0 0 #8aedff);
+  }
+  70% {
+    transform: rotate(0deg);
+  }
+  75% {
+    filter: drop-shadow(0 0 15px #a3f1ff);
+    transform: rotate(-45deg);
+  }
+  85% {
+    transform: rotate(45deg);
+  }
+  95% {
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes animeTitleLegendary {
+  0% {
+    background-position: 0% 50%;
+  }
+  1% {
+    filter: drop-shadow(0 0 0 rgb(122, 143, 209, 0.5));
+  }
+  25% {
+    filter: drop-shadow(0 0 15px rgb(122, 143, 209, 0.5));
+  }
+  49% {
+    filter: drop-shadow(0 0 0 rgb(122, 143, 209, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 0 #cbf4ff);
+  }
+  75% {
+    filter: drop-shadow(0 0 15px #cbf4ff);
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes animeIconLegendary {
+  1% {
+    filter: drop-shadow(0 0 0 #cbf4ff);
+  }
+  25% {
+    filter: drop-shadow(0 0 15px rgb(122, 143, 209, 0.5));
+  }
+  49% {
+    filter: drop-shadow(0 0 0 rgb(122, 143, 209, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 0 #cbf4ff);
+  }
+  75% {
+    filter: drop-shadow(0 0 15px #cbf4ff);
+  }
+}
+
+@keyframes animeTitleMythical {
+  0% {
+    background-position: 0% 50%;
+  }
+  1% {
+    filter: drop-shadow(0 0 0 rgb(255, 187, 255, 0.8));
+  }
+  25% {
+    filter: drop-shadow(0 0 15px rgb(255, 187, 255, 0.8));
+  }
+  49% {
+    filter: drop-shadow(0 0 0 rgb(255, 187, 255, 0.8));
+  }
+  50% {
+    filter: drop-shadow(0 0 0 #a3f1ff);
+  }
+  75% {
+    filter: drop-shadow(0 0 15px #e4c8c8);
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes animeIconMythical {
+  15% {
+    background-size: 0px;
+  }
+  25% {
+    background-size: 30px;
+  }
+  65% {
+    background-size: 30px;
+  }
+  75% {
+    background-size: 0px;
+  }
+}
+
+@keyframes animeIconMythicalMew {
+  10% {
+    background-size: 34px;
+    transform: initial;
+  }
+  15% {
+    background-size: 0px;
+    transform: rotate(720deg);
+  }
+  70% {
+    transform: initial;
+    background-size: 0px;
+  }
+  80% {
+    background-size: 34px;
+    transform: rotate(360deg);
+  }
+  80.01% {
+    transform: initial;
+  }
+}
+
+@keyframes animeIconMythicalFlash {
+  10% {
+    background-size: 0px;
+    transform: initial;
+  }
+  20% {
+    background-size: 60px;
+  }
+  30% {
+    background-size: 0px;
+    transform: rotate(720deg);
+  }
+  60% {
+    background-size: 0px;
+    transform: initial;
+  }
+  70% {
+    background-size: 60px;
+  }
+  80% {
+    background-size: 0px;
+    transform: rotate(720deg);
+  }
+}

@@ -1,0 +1,313 @@
+.body {
+  display: grid;
+  grid-template-areas:
+    "config"
+    "table"
+    "page";
+  grid-template-rows: auto 1fr auto;
+}
+
+.body button {
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 8px;
+  border: 1px solid rgb(93, 170, 247);
+  box-shadow: 2px 2px 0.5px rgb(93, 170, 247);
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.body button:active {
+  animation: btnClick 0.2s linear;
+}
+
+.titleLeft {
+  justify-content: flex-start !important;
+}
+
+.tableConfig {
+  height: 50px;
+  grid-area: config;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "search btn";
+  padding: 10px;
+  border-bottom: 1px solid rgb(211, 211, 211);
+}
+
+.btnConfigure,
+.searchContainer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.searchContainer {
+  justify-content: center;
+  grid-area: search;
+}
+
+.btnConfigure {
+  justify-content: flex-end;
+  grid-area: btn;
+}
+
+.btnFoot {
+  background-image: url("../../Assets/Image/Images/configTable/footTrue.png");
+  background-size: 24px;
+}
+
+.btnFoot.false {
+  background-image: url("../../Assets/Image/Images/configTable/footFalse.png");
+}
+
+.table {
+  display: grid;
+  grid-template-areas: "thead" "tbody" "tfoot";
+  grid-template-rows: auto 1fr auto;
+}
+
+.table > * > tr {
+  display: grid;
+  grid-template-columns: minmax(50px, 1fr) 3fr minmax(60px, 1fr);
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
+.table > * > tr > th,
+.tbody > tr > td {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+}
+
+.thead {
+  grid-area: thead;
+  border-radius: 10px 10px 0 0;
+}
+
+.tbody {
+  grid-area: tbody;
+  background-image: url("../../Assets/Image/Images/table/backgroundTable.png");
+  background-position: 20px center;
+  background-repeat: no-repeat;
+  background-size: 65%;
+}
+
+.tbody > tr:hover {
+  background-color: rgb(223, 223, 226);
+  transition: 0.1s;
+  color: black;
+}
+
+.tbody > tr.noResult {
+  grid-template-columns: 1fr;
+}
+
+.tbody > tr.noResult > td {
+  height: 509px;
+  font-size: 20px;
+}
+
+.tbody .noResult:hover {
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
+.tbody > tr > td,
+.tfoot > tr > th {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  text-transform: capitalize;
+}
+
+.tfoot > tr > th {
+  font-size: 12px;
+  height: 25px;
+}
+
+.tablePage {
+  height: 50px;
+  display: grid;
+  grid-template-areas: "pages select";
+  grid-template-columns: 1fr auto;
+}
+
+.pages {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pages button {
+  background-size: 18px;
+}
+
+.pages .btnBack {
+  background-image: url("../../Assets/Image/Images/configTable/arrowLeft.png");
+}
+
+.pages .btnGo {
+  background-image: url("../../Assets/Image/Images/configTable/arrowRight.png");
+}
+
+.mainText > span,
+.subText > span {
+  color: var(--blue1);
+  font-weight: bold;
+}
+
+.mainText {
+  margin-bottom: 2px;
+}
+
+.textPage {
+  padding: 0 13px;
+  text-align: center;
+}
+
+.subText,
+.subText > span {
+  font-size: 12px;
+}
+
+.boxSelectPage {
+  height: 50px;
+  display: grid;
+  grid-template-areas:
+    "options"
+    "button";
+  grid-template-rows: 1px 49px;
+}
+
+.optionsPages {
+  grid-area: options;
+  background-color: var(--white);
+  width: 156px;
+  height: 196px;
+  position: absolute;
+  margin-top: -202px;
+  margin-left: -165px;
+  border-radius: 7px;
+  /* border-top: 2px solid var(--white);
+  border-bottom: 2px solid var(--white); */
+  border: 2px solid var(--blue4);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--white);
+  overflow-y: scroll;
+}
+
+.optionsPages::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.optionsPages::-webkit-scrollbar {
+  width: 1px;
+  background: transparent;
+}
+.optionsPages::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: var(--blue3);
+}
+
+.optionsPages li {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+.optionPage li:hover {
+  background-color: rgb(223, 223, 226);
+}
+
+.btnSelectPage {
+  grid-area: button;
+  width: 160px;
+  height: 40px;
+  position: absolute;
+  margin-top: 4px;
+  margin-left: -165px;
+}
+
+@keyframes btnClick {
+  50% {
+    transform: translateX(4px) translateY(4px);
+    box-shadow: -2px -2px rgb(169, 172, 175);
+  }
+}
+
+@media (max-width: 374px) {
+  .columnOption {
+    display: none !important;
+  }
+}
+
+@media (min-width: 375px) {
+  .mobileTable > tr {
+    grid-template-columns:
+      minmax(50px, 1fr) 3fr minmax(70px, 1fr)
+      minmax(50px, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .tableConfig {
+    height: 100px;
+    grid-template-columns: 1fr;
+    grid-template-areas: "search" "btn";
+  }
+
+  .btnConfigure {
+    width: 88vw;
+  }
+
+  .responsive {
+    width: 88vw;
+  }
+
+  .responsive::before {
+    width: calc(88vw - 8px);
+  }
+
+  .tbody {
+    background-size: 90%;
+    background-position: center;
+  }
+
+  .tablePage {
+    height: 100px;
+    grid-template-areas: "pages" " select";
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(50px);
+  }
+
+  .boxSelectPage {
+    display: flex;
+    justify-content: center;
+  }
+
+  .optionsPages {
+    width: 170px;
+    margin-top: -202px;
+    margin-left: 0px;
+  }
+
+  .btnSelectPage {
+    width: 170px;
+    margin-left: 0px;
+  }
+}
+
+@media (min-width: 521px) and (max-width: 720px) {
+  .responsive {
+    width: 42vw;
+  }
+
+  .responsive::before {
+    width: calc(42vw - 8px);
+  }
+}

@@ -1,0 +1,55 @@
+.divList {
+  position: absolute;
+  margin-top: 10px;
+  width: 312px;
+  border: 4px solid var(--blue4);
+  border-bottom: 2px solid var(--blue3);
+  border-top: 2px solid var(--blue3);
+  border-radius: 10px;
+  background-color: var(--white);
+  z-index: 101;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
+
+.divList::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.divList::-webkit-scrollbar {
+  width: 2px;
+  background: transparent;
+  padding: 5px 0 5px 0;
+}
+.divList::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: var(--blue3);
+}
+
+.divList li a,
+.divList .notFound {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 13px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  text-transform: capitalize;
+  transition: 0.15s;
+}
+
+.divList li a:hover {
+  color: var(--white);
+  background: var(--blue4);
+  font-size: 18px;
+  transition: 0.15s;
+}
+
+.dNone {
+  display: none;
+}
+
+@media (max-width: 420px) {
+  .divList {
+    width: calc(80vw - 8px);
+  }
+}

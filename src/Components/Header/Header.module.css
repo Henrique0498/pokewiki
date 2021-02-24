@@ -1,0 +1,252 @@
+.header {
+  background-color: var(--red);
+  width: 100%;
+  position: fixed;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  z-index: 200;
+}
+
+h2 {
+  padding: 0 6px;
+  padding-top: 8px;
+}
+
+.title {
+  font-family: "Pokemon Solid";
+  width: 180px;
+  display: flex;
+  font-size: 38px;
+  line-height: 56px;
+  letter-spacing: 3px;
+  -webkit-text-stroke-width: 5px;
+  -webkit-text-stroke-color: var(--blue);
+}
+
+.title::after {
+  content: "PokeWiki";
+  position: absolute;
+  padding: 0 2px;
+  margin-left: -2px;
+  -webkit-text-stroke-width: 0px;
+  background: -webkit-linear-gradient(
+    0,
+    #f3e5b1,
+    rgb(251, 202, 27),
+    rgb(251, 202, 27),
+    #f3e5b1,
+    rgb(251, 202, 27),
+    rgb(251, 202, 27),
+    #f3e5b1,
+    rgb(251, 202, 27),
+    rgb(251, 202, 27)
+  );
+  background-size: 400%;
+  background-clip: text;
+  color: transparent;
+  animation: animeText 2.5s linear infinite;
+}
+
+.menuMobile {
+  width: 100vw;
+  position: fixed;
+  left: 0px;
+  top: 60px;
+  display: none;
+  overflow: hidden;
+  background-color: var(--white);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+  animation: animeTop 0.2s linear;
+}
+
+.menuMobile > li a,
+.iconMenu {
+  display: flex;
+  align-items: center;
+}
+
+.menuMobile > li {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menuMobile > li a {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  animation: animeLeftMenu 0.2s linear;
+}
+
+.menuMobile > li a:hover,
+.menuMobile > li a:focus {
+  font-size: 18px;
+}
+
+.menuMobile > li a:hover svg,
+.menuMobile > li a:focus svg {
+  width: 28px;
+  height: 28px;
+}
+
+.menuMobileActive {
+  display: block;
+}
+
+.menu {
+  display: flex;
+}
+
+.menu > li a {
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  margin-right: 20px;
+  color: rgba(255, 255, 255, 0.705);
+}
+
+.menu > li a:hover,
+.menu > li a:focus,
+.menu .active {
+  color: var(--white) !important;
+}
+
+.iconMenu {
+  margin-right: 7px;
+  background-color: var(--white);
+}
+.iconMenu svg {
+  width: 24px;
+  height: 24px;
+}
+
+.iconInfo svg > path {
+  fill: var(--blue2);
+}
+
+.navbar,
+.btn,
+.btnActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  width: 31px;
+  height: 31px;
+  position: absolute;
+  z-index: 1;
+  left: 11px;
+  top: 15px;
+  cursor: pointer;
+}
+
+.btn::before {
+  content: "";
+  width: 25px;
+  height: 0.5px;
+  border: 3px solid rgba(255, 255, 255, 0.93);
+  border-radius: 1.5px;
+  box-shadow: 0 11px rgba(255, 255, 255, 0.93),
+    0 -11px rgba(255, 255, 255, 0.93), 3px 14px 4px rgba(0, 0, 0, 0.25),
+    3px -8px 4px rgba(0, 0, 0, 0.25), 3px 3px 4px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+}
+
+.btn::after {
+  content: "";
+  width: 25px;
+  height: 1px;
+  position: absolute;
+  background-color: none;
+  box-shadow: 0px 11px #e63333, 0px -11px #e63333;
+  transition: 0.3s;
+}
+
+.btnActive::before {
+  width: 0.5px;
+  height: 5px;
+  box-shadow: 11px 0 rgba(255, 255, 255, 0.93),
+    -11px 0 rgba(255, 255, 255, 0.93), 14px 3px 4px rgba(0, 0, 0, 0.25),
+    -8px 3px 4px rgba(0, 0, 0, 0.25), 3px 3px 4px rgba(0, 0, 0, 0.25);
+  animation: buttonMenu 0.3s linear;
+}
+
+.btnActive::after {
+  width: 1px;
+  height: 5px;
+  box-shadow: 11px 0px #e63333, -11px 0px #e63333;
+  animation: buttonMenu 0.3s linear;
+}
+
+@media (max-width: 320px) {
+  h2 {
+    padding-left: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 576px) {
+  h2 {
+    margin: 0 25px;
+  }
+}
+
+@keyframes animeText {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes buttonMenu {
+  0% {
+    width: 31px;
+    height: 1px;
+    box-shadow: 0px 11px rgba(255, 255, 255, 0.93),
+      0px -11px rgba(255, 255, 255, 0.93);
+  }
+  25% {
+    width: 1px;
+    box-shadow: 0px 11px rgba(255, 255, 255, 0.93),
+      0px -11px rgba(255, 255, 255, 0.93);
+  }
+  50% {
+    box-shadow: 0 0px rgba(255, 255, 255, 0.93);
+  }
+  75% {
+    height: 1px;
+    box-shadow: 11px 0px rgba(255, 255, 255, 0.93),
+      -11px 0px rgba(255, 255, 255, 0.93);
+  }
+  100% {
+    height: 5px;
+  }
+}
+
+@keyframes animeTop {
+  0% {
+    height: 0px;
+  }
+  50% {
+    height: 250px;
+  }
+}
+
+@keyframes animeLeftMenu {
+  25% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: initial;
+  }
+}

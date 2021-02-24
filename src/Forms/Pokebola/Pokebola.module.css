@@ -1,0 +1,7 @@
+.svg {
+  display: inline-block;
+  z-index: -1;
+  width: 160px;
+  opacity: 0.5;
+  margin-bottom: 0px;
+}

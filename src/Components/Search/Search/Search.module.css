@@ -1,0 +1,85 @@
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 230px;
+  width: 900px;
+  max-width: 100%;
+  min-height: 60px;
+  height: 280px;
+  max-height: 30vh;
+  margin: 0 auto 0 auto;
+}
+
+.heightSm {
+  min-height: 60px;
+  max-height: 100px;
+}
+
+.search {
+  border: 2px solid var(--blue3);
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 50px;
+  width: 320px;
+  color: var(--blue1);
+  font-size: 20px;
+  padding-left: 13px;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.search::placeholder {
+  color: var(--blue1);
+  font-size: 20px;
+  font-style: oblique;
+}
+
+.search::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search:hover,
+.search:focus {
+  border: 2px solid var(--blue2);
+  box-shadow: 0 0 5px var(--blue4);
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: 0.2s;
+}
+
+.label {
+  position: absolute;
+  height: 50px;
+  margin-top: -50px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.label::before {
+  content: "";
+  position: absolute;
+  width: 312px;
+  height: 25px;
+  border-left: 4px solid var(--red);
+  border-right: 4px solid var(--red);
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.label:hover::before,
+.search:hover ~ .label::before,
+.search:focus ~ .label::before {
+  height: 50px;
+  transition: 0.2s;
+  border-radius: 10px 10px;
+}
+
+@media (max-width: 420px) {
+  .search {
+    width: 80vw;
+  }
+
+  .label::before {
+    width: calc(80vw - 8px);
+  }
+}

@@ -1,0 +1,201 @@
+.configTable {
+  display: grid;
+  padding: 10px 0;
+  grid-template-columns: 1fr;
+  grid-template-areas: "search " "select";
+  gap: 10px;
+}
+
+.selectBox {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  user-select: none;
+}
+
+.selectGen {
+  width: 298px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: capitalize;
+  padding-right: 5px;
+}
+
+.selectGen::after {
+  content: "";
+  width: 25px;
+  height: 25px;
+  background-image: url("./../../../Assets/Image/Svg/background/up-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(90deg);
+  background-size: 21px;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.selectGen.active::after {
+  transform: rotate(180deg);
+}
+
+.selectGen.active {
+  border: 2px solid var(--blue2);
+}
+.selectGen.active,
+.optionBox.active {
+  box-shadow: 0 0 5px var(--blue4);
+}
+
+.optionBox {
+  position: absolute;
+  width: 312px;
+  min-height: 200px;
+  height: 300px;
+  display: none;
+  margin-top: 45px;
+  overflow-y: scroll;
+  background-color: var(--white);
+  border: 4px solid var(--blue4);
+  border-bottom: 2px solid var(--blue3);
+  border-top: 2px solid var(--blue3);
+  border-radius: 7px;
+  user-select: none;
+  z-index: 101;
+}
+
+.optionBox.active {
+  display: block;
+}
+
+.optionBox::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.optionBox::-webkit-scrollbar {
+  width: 2px;
+  background: transparent;
+  padding: 5px 0;
+}
+.optionBox::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: var(--blue3);
+}
+
+.optionGen label {
+  height: 40px;
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  padding-left: 13px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-transform: capitalize;
+  transition: 0.15s;
+}
+
+.optionGen:hover label,
+.optionGen:focus label {
+  color: var(--white);
+  transition: 0.15s;
+  font-size: 18px;
+  background: var(--blue4);
+}
+
+.radio {
+  display: none;
+}
+
+.tableMoves {
+  border-top: none;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.tableHead > tr {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-areas:
+    "name nameGeneration nameGeneration"
+    "name level metod";
+}
+
+.thGeneration {
+  grid-area: nameGeneration;
+}
+
+.thLevel {
+  grid-area: level;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.thMethod {
+  grid-area: metod;
+}
+
+.tableHead tr,
+.tableBody tr {
+  display: grid;
+  font-size: 14px;
+  grid-template-columns: repeat(3, minmax(60px, 1fr));
+}
+
+.tableHead th,
+.tableBody tr.noMove td,
+.tableBody td a {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thName {
+  grid-area: name;
+  grid-row: 2;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tableBody td {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tableBody .noMove {
+  display: block;
+}
+
+@media (max-width: 420px) {
+  .tableHead > tr th,
+  .tableBody > tr td {
+    font-size: 14px;
+  }
+
+  .selectGen {
+    width: calc(80vw - 17px);
+  }
+
+  .optionBox {
+    width: calc(80vw - 8px);
+  }
+}
+
+@media (min-width: 521px) {
+  .configTable {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "search select";
+  }
+}
+
+@media (min-width: 521px) and (max-width: 720px) {
+  .selectGen {
+    width: calc(42vw - 17px);
+  }
+
+  .responsive {
+    width: calc(42vw);
+  }
+
+  .responsive::before,
+  .optionBox {
+    width: calc(42vw - 8px);
+  }
+}

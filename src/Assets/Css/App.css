@@ -1,0 +1,124 @@
+@font-face {
+  font-family: Pokemon Solid;
+  src: url("./../Font/PokemonSolid.ttf");
+}
+@font-face {
+  font-family: Ubuntu-Regular;
+  src: url("./../Font/Ubuntu-Regular.ttf");
+}
+
+:root {
+  --red: #e03434;
+  --blue: #0f68ff;
+  --blue1: #3c83fd;
+  --blue2: rgb(0, 153, 255);
+  --blue3: rgb(54, 171, 248);
+  --blue4: rgb(95, 187, 248);
+  --black: #2f2f2f;
+  --white: #fbfbfb;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  text-decoration: none;
+  color: var(--black);
+  background: none;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  font-family: Ubuntu-Regular;
+}
+
+body {
+  background: var(--white);
+}
+
+.main {
+  padding-top: 60px;
+  min-height: calc(100vh - 60px);
+}
+
+.animeLeft {
+  animation: animeLeft 0.2s linear;
+}
+
+.responsiveInput {
+  width: 320px;
+  height: 40px;
+  padding-left: 13px;
+  border: 2px solid var(--blue3);
+  border-radius: 10px;
+  font-size: 18px;
+  color: var(--blue1);
+  transition: 0.2s;
+}
+
+.responsiveInput:hover,
+.responsiveInput:focus {
+  border: 2px solid var(--blue2);
+  box-shadow: 0 0 5px var(--blue4);
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: 0.2s;
+}
+
+.responsiveInput::-webkit-search-cancel-button {
+  display: none;
+}
+
+.responsiveInput::placeholder {
+  color: var(--blue1);
+  font-size: 18px;
+  font-style: oblique;
+}
+
+.responsiveLabel {
+  position: absolute;
+  width: 320px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+.responsiveLabel::before {
+  content: "";
+  position: absolute;
+  width: 312px;
+  height: 20px;
+  border-left: 4px solid var(--red);
+  border-right: 4px solid var(--red);
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.responsiveLabel:hover::before,
+.responsiveInput:hover ~ .responsiveLabel::before,
+.responsiveInput:focus ~ .responsiveLabel::before {
+  height: 40px !important;
+  transition: 0.2s;
+  border-radius: 10px 10px;
+}
+
+@keyframes animeLeft {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 420px) {
+  .responsiveLabel,
+  .responsiveInput {
+    width: 80vw;
+  }
+
+  .responsiveLabel::before {
+    width: calc(80vw - 8px);
+  }
+}

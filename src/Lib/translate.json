@@ -1,0 +1,24 @@
+{
+  "machine": "Máquina ou TM/TH",
+  "tutor": "Treinador",
+  "level-up": "Nível",
+
+  "bug": "grass",
+  "dark": "noturno",
+  "dragon": "dragão",
+  "electric": "elétrico",
+  "fairy": "fada",
+  "fighting": "lutador",
+  "fire": "fogo",
+  "flying": "ar",
+  "ghost": "fantasma",
+  "grass": "grama",
+  "ground": "terra",
+  "ice": "gelo",
+  "normal": "normal",
+  "poison": "venenoso",
+  "psychic": "psíquico",
+  "rock": "pedra",
+  "steel": "metal",
+  "water": "água"
+}
