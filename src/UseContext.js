@@ -6,6 +6,7 @@ export const UserContext = React.createContext();
 
 export const UserStorage = ({ children }) => {
   const [pokeList, setPokeList] = React.useState(null);
+  const [updateBackground, setUpdateBackground] = React.useState(null);
   const [berryList, setBerryList] = React.useState(null);
   const { request } = useFetch();
 
@@ -32,7 +33,9 @@ export const UserStorage = ({ children }) => {
   }, [request]);
 
   return (
-    <UserContext.Provider value={{ pokeList, berryList }}>
+    <UserContext.Provider
+      value={{ pokeList, berryList, updateBackground, setUpdateBackground }}
+    >
       {children}
     </UserContext.Provider>
   );

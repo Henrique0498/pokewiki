@@ -7,15 +7,14 @@ import Error from "../../Helper/Error/Error";
 import Loading from "../../Helper/Loading/Loading";
 import LoadingItems from "../../Helper/LoadingItems/LoadingItems";
 import NoResults from "../../Helper/NoResults/NoResults";
-import Background from "../../Components/Background/Background";
 import Search from "../../Components/Search/Search/Search";
 import Types from "../../Forms/Types/Types";
-
 import noPhoto from "./../../Assets/Image/Images/no-photo.jpg";
 import styles from "./Home.module.css";
+import { UserContext } from "../../UseContext";
 
 const Home = () => {
-  const reference = React.useRef();
+  const { setUpdateBackground } = React.useContext(UserContext);
   const [loadPage, setLoadPage] = React.useState(true);
   const [loadItems, setLoadItems] = React.useState(false);
   const { error, request } = useFetch();
@@ -36,6 +35,7 @@ const Home = () => {
       const { index, indexMax } = getPage();
       let data = [];
       setLoadItems(true);
+      setUpdateBackground("atualizando");
 
       for (let i = index; i <= indexMax; i++) {
         if (i <= 893) {
@@ -51,13 +51,14 @@ const Home = () => {
       setResults((result) => [...result, ...data]);
       setLoadPage(false);
       setLoadItems(false);
+      setUpdateBackground("terminando");
 
       if (data.length < 19) {
         setInfinite(false);
       }
     }
     getData();
-  }, [getPage, request]);
+  }, [getPage, request, setUpdateBackground]);
 
   React.useEffect(() => {
     let wait = false;
@@ -91,8 +92,7 @@ const Home = () => {
     return <Loading />;
   } else if (results) {
     return (
-      <section ref={reference} className={`${styles.body} animeLeft`}>
-        <Background reference={reference} actualization={loadItems} />
+      <section className={`${styles.body} animeLeft`}>
         <Search width="100%" height="´" />
         <div className={styles.main}>
           <table className={styles.table}>

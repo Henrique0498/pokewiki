@@ -5,6 +5,10 @@
   z-index: -1;
 }
 
+.darkTheme {
+  background-color: rgb(15, 15, 15);
+}
+
 .pokebolas {
   width: calc(100vw + 160px);
   margin-left: -60px;

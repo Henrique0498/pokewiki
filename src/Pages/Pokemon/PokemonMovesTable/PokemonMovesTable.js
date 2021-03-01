@@ -5,8 +5,10 @@ import styles from "./PokemonMovesTable.module.css";
 import FilterList from "../../../Forms/FilterList/FilterList";
 import useText from "../../../Hooks/useText";
 import { Link, useLocation } from "react-router-dom";
+import { UserContext } from "../../../UseContext";
 
 const PokemonMovesTable = (data) => {
+  const { setUpdateBackground } = React.useContext(UserContext);
   const [generation, setGeneration] = React.useState([]);
   const [moves, setMoves] = React.useState(
     data.move.sort((before, after) => {
@@ -95,8 +97,8 @@ const PokemonMovesTable = (data) => {
   }, [data.move, genActual]);
 
   React.useEffect(() => {
-    data.setActualize(moves);
-  }, [data, moves]);
+    setUpdateBackground(moves);
+  }, [data, moves, setUpdateBackground]);
 
   function handleActiveOptions() {
     setActiveOption((activeOption) => !activeOption);

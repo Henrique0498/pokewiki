@@ -11,19 +11,24 @@
   min-width: 40px;
   min-height: 40px;
   border-radius: 8px;
-  border: 1px solid rgb(93, 170, 247);
-  box-shadow: 2px 2px 0.5px rgb(93, 170, 247);
+  border: 1px solid rgb(118, 181, 243);
+  box-shadow: 0 0 2px rgb(186, 220, 255);
   background-repeat: no-repeat;
   background-position: center;
-  transition: 0.25s;
+  transition: 0.2s;
   cursor: pointer;
 }
 
-.body button:active {
-  animation: btnClick 0.2s linear;
+.body button:hover {
+  box-shadow: 0 0 0 3px rgb(186, 220, 255), 0 0 0 4px rgb(93, 170, 247);
 }
 
-.titleLeft {
+.body button:active {
+  animation: btnClick 0.12s ease-in-out;
+}
+
+.titleLeft,
+.titleLeft a {
   justify-content: flex-start !important;
 }
 
@@ -52,6 +57,7 @@
 .btnConfigure {
   justify-content: flex-end;
   grid-area: btn;
+  gap: 10px;
 }
 
 .btnFoot {
@@ -63,6 +69,24 @@
   background-image: url("../../Assets/Image/Images/configTable/footFalse.png");
 }
 
+.btnTotalPages {
+  /* display: grid;
+  grid-template-columns: 1fr;
+  gap: 0px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.btnTotalPages > p {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.btnTotalPages > span {
+  font-size: 10px;
+}
+
 .table {
   display: grid;
   grid-template-areas: "thead" "tbody" "tfoot";
@@ -72,16 +96,21 @@
 .table > * > tr {
   display: grid;
   grid-template-columns: minmax(50px, 1fr) 3fr minmax(60px, 1fr);
-  background-color: rgba(255, 255, 255, 0.96);
 }
 
 .table > * > tr > th,
-.tbody > tr > td {
+.table > * > .noResult > td,
+.tbody > tr > td > a {
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-transform: capitalize;
+}
+
+.tbody img {
+  width: 50px;
+  object-fit: cover;
 }
 
 .thead {
@@ -98,7 +127,7 @@
 }
 
 .tbody > tr:hover {
-  background-color: rgb(223, 223, 226);
+  background-color: rgb(142, 142, 145, 0.3);
   transition: 0.1s;
   color: black;
 }
@@ -107,13 +136,13 @@
   grid-template-columns: 1fr;
 }
 
-.tbody > tr.noResult > td {
-  height: 509px;
+.tbody > tr.noResult > td,
+.tbody > tr.noResult > td > a {
   font-size: 20px;
 }
 
 .tbody .noResult:hover {
-  background-color: rgba(255, 255, 255, 0.96);
+  background-color: transparent;
 }
 
 .tbody > tr > td,
@@ -191,8 +220,6 @@
   margin-top: -202px;
   margin-left: -165px;
   border-radius: 7px;
-  /* border-top: 2px solid var(--white);
-  border-bottom: 2px solid var(--white); */
   border: 2px solid var(--blue4);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   background-color: var(--white);
@@ -234,9 +261,11 @@
 }
 
 @keyframes btnClick {
+  0% {
+    box-shadow: 0 0 0 3px rgb(186, 220, 255), 0 0 0 4px rgb(93, 170, 247);
+  }
   50% {
-    transform: translateX(4px) translateY(4px);
-    box-shadow: -2px -2px rgb(169, 172, 175);
+    box-shadow: 0 0 0 0px rgb(186, 220, 255), 0 0 0 0px rgb(93, 170, 247);
   }
 }
 

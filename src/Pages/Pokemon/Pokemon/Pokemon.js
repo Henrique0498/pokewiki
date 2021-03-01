@@ -12,19 +12,21 @@ import styles from "./Pokemon.module.css";
 import PokemonMovesTable from "./../PokemonMovesTable/PokemonMovesTable";
 import useText from "../../../Hooks/useText";
 import ImageItems from "../../../Forms/ImageItems/ImageItems";
+import { UserContext } from "../../../UseContext";
 
 const Pokemon = () => {
+  const { setUpdateBackground } = React.useContext(UserContext);
   const reference = React.useRef();
   const [pokemon, setPokemon] = React.useState(null);
   const [pokemonEvolution, setPokemonEvolution] = React.useState([]);
-  const [actualize, setActualize] = React.useState();
   const [loadPage, setLoadPage] = React.useState(true);
-  // const [linkItem, setLinkItem] = React.useState(true);
   const { error, request } = useFetch();
   const { id } = useParams();
   const { textTransform } = useText();
 
   React.useEffect(() => {
+    setUpdateBackground("pokemon");
+
     async function getPokemon() {
       let resultPoke = [];
       let resultPokeEvolution = [];
@@ -87,7 +89,7 @@ const Pokemon = () => {
       setLoadPage(false);
     }
     getPokemon();
-  }, [id, request]);
+  }, [id, request, setUpdateBackground]);
 
   if (error) {
     return <Error error={error} />;
@@ -96,7 +98,6 @@ const Pokemon = () => {
   } else if (pokemon) {
     return (
       <section ref={reference}>
-        <Background reference={reference} actualization={actualize} />
         <Search estilo="heightSm" />
         <div className={styles.card}>
           <div className={styles.header}>
@@ -249,10 +250,7 @@ const Pokemon = () => {
 
             <div className={`${styles.containerSm} ${styles.moves}`}>
               <h4 className={styles.titleContainer}>Movimentos</h4>
-              <PokemonMovesTable
-                move={pokemon.moves}
-                setActualize={setActualize}
-              />
+              <PokemonMovesTable move={pokemon.moves} />
             </div>
           </div>
         </div>

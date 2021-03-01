@@ -12,14 +12,18 @@ import Items from "./Pages/Items/Items";
 import Moves from "./Pages/Moves/Moves";
 import About from "./Pages/About/About";
 import NotFound from "./Helper/NotFound/NotFound";
+import Background from "./Components/Background/Background";
 
 function App() {
+  const reference = React.useRef();
+
   return (
     <>
       <BrowserRouter>
         <UserStorage>
+          <Background reference={reference} />
           <Header />
-          <main className="main">
+          <main className="main" ref={reference}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/abilities/*" element={<Abilities />} />
