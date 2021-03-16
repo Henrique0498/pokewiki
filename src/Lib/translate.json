@@ -3,7 +3,7 @@
   "tutor": "Treinador",
   "level-up": "Nível",
 
-  "bug": "grass",
+  "bug": "inseto",
   "dark": "noturno",
   "dragon": "dragão",
   "electric": "elétrico",
@@ -20,5 +20,22 @@
   "psychic": "psíquico",
   "rock": "pedra",
   "steel": "metal",
-  "water": "água"
+  "water": "água",
+
+  "picky": "exigente",
+  "healing": "cura",
+  "medicine": "medicamento",
+  "baking": "apenas",
+  "only": "assar",
+
+  "standard": "padrão",
+  "balls": "bolas",
+  "gameplay": "Jogatina",
+
+  "held:": "retido:",
+  "held": "retido",
+  "allows": "permite",
+  "to": "para",
+  "evolve": "evolução",
+  "into": "em"
 }

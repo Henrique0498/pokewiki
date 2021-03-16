@@ -19,8 +19,7 @@ const Background = ({ reference }) => {
       const heightPage = reference.current.clientHeight;
       const index = getIndex();
       const sizePage = parseInt((heightPage / 160) * (widthPage / 160) * 0.5);
-      setHeight(reference.current.clientHeight + 100);
-      console.log();
+      setHeight(reference.current.clientHeight + 30);
 
       for (let i = index; i <= sizePage; i++) {
         setPokebolas((pokebolas) => [...pokebolas, <Pokebola key={i} />]);

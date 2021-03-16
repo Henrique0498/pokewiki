@@ -11,7 +11,25 @@ export function POKEMONS_GET(limit, offset) {
 
 export function BERRYS_GET() {
   return {
-    url: `${API_URL}/berry/`,
+    url: `${API_URL}/berry/?limit=1000`,
+    options: {
+      method: "GET",
+    },
+  };
+}
+
+export function ITEMS_GET() {
+  return {
+    url: `${API_URL}/item/?limit=1000`,
+    options: {
+      method: "GET",
+    },
+  };
+}
+
+export function MOVES_GET() {
+  return {
+    url: `${API_URL}/move/?limit=1000`,
     options: {
       method: "GET",
     },
@@ -29,7 +47,16 @@ export function POKEMON_GET(idOrName) {
 
 export function BERRY_GET(idOrName) {
   return {
-    url: `${API_URL}/berry/${idOrName}`,
+    url: `${API_URL}/item/${idOrName}`,
+    options: {
+      method: "GET",
+    },
+  };
+}
+
+export function MOVE_GET(idOrName) {
+  return {
+    url: `${API_URL}/move/${idOrName}`,
     options: {
       method: "GET",
     },

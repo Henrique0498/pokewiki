@@ -1,13 +1,13 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Search from "../../../Components/Search/Search/Search";
-import Image from "../../../Forms/Image/Image";
-import ImageItems from "../../../Forms/ImageItems/ImageItems";
+import Table from "../../../Components/Table/Table";
+import Types from "../../../Forms/Types/Types";
 import Loading from "../../../Helper/Loading/Loading";
 import NotFound from "../../../Helper/NotFound/NotFound";
 import useFetch from "../../../Hooks/useFetch";
 import useText from "../../../Hooks/useText";
-import { BERRY_GET } from "../../../Services/api";
+import { MOVE_GET } from "../../../Services/api";
 import { UserContext } from "../../../UseContext";
 import styles from "./Detail.module.css";
 
@@ -17,26 +17,39 @@ const Detail = () => {
   const { id } = useParams();
   const [loadPage, setLoadPage] = React.useState(true);
   const [dataBase, setDataBase] = React.useState(null);
+  const [dataTable, setDataTable] = React.useState(null);
   const { textTransform, getText } = useText();
-  const [urlImage, setUrlImage] = React.useState("");
 
   React.useEffect(() => {
     async function getData() {
+      let data = [];
       if (id) {
-        const { url, options } = BERRY_GET(id);
+        const { url, options } = MOVE_GET(id);
         const { response, json } = await request(url, options);
 
         if (response && response.ok) {
-          json.held_by_pokemon.forEach(({ pokemon }) => {
+          json.learned_by_pokemon.forEach((pokemon, index) => {
             const result = pokemon.url.split("/");
-            pokemon.id = result[result.length - 2];
+
+            data.push([
+              index,
+              pokemon.name,
+              `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                result[result.length - 2]
+              }.png`,
+            ]);
+          });
+
+          setDataTable({
+            mobileTable: false,
+            pageRedirection: "pokemon",
+            localStorage: "MoveList",
+            headers: ["ID", "Nome do pokemon", "Foto"],
+            body: data,
           });
 
           setDataBase(json);
-          setUrlImage(
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
-          );
-          setUpdateBackground("berry-profile");
+          setUpdateBackground("move-profile");
         }
 
         setLoadPage(false);
@@ -52,27 +65,27 @@ const Detail = () => {
   } else if (dataBase) {
     return (
       <section>
-        <Search estilo="heightSm" />
+        <Search />
         <div className={styles.card}>
           <div className={styles.header}>
-            <ImageItems
-              photoDefault={dataBase.sprites.default}
-              name={dataBase.name}
-            />
+            <h1 className={styles.nameMove}>
+              {textTransform(dataBase.name, "replace")}
+            </h1>
           </div>
+
           <div className={styles.body}>
-            <div className={`${styles.container} ${styles.containerCategory}`}>
-              <h4 className={styles.titleContainer}>Categoria</h4>
-              <div className={styles.contentText}>
-                {dataBase.category ? (
-                  <p>
-                    {textTransform(
-                      textTransform(dataBase.category.name, "replace"),
-                      "translate"
-                    )}
-                  </p>
+            <div className={`${styles.container} ${styles.containerType}`}>
+              <h4 className={styles.titleContainer}>Tipo</h4>
+              <div className={styles.containerBody}>
+                {dataBase.type ? (
+                  <div className={styles.type}>
+                    <Types type={dataBase.type.name} />
+                    <p>{textTransform(dataBase.type.name, "translate")}</p>
+                  </div>
                 ) : (
-                  <p>Essa berry não está em uma categoria.</p>
+                  <p className={styles.contentNotFound}>
+                    Essa berry não está em uma categoria.
+                  </p>
                 )}
               </div>
             </div>
@@ -80,8 +93,8 @@ const Detail = () => {
             <div className={`${styles.container} ${styles.containerEffect}`}>
               <h4 className={styles.titleContainer}>Efeito</h4>
 
-              <div className={styles.contentText}>
-                <p>
+              <div className={styles.containerBody}>
+                <p className={styles.contentNotFound}>
                   {getText(dataBase.name)
                     ? getText(dataBase.name)
                     : "Não possui nenhum efeito."}
@@ -93,21 +106,12 @@ const Detail = () => {
               <h4 className={styles.titleContainer}>
                 Pokemons que retem o item
               </h4>
-              <div className={styles.pokemonsHeldContainer}>
-                {dataBase.held_by_pokemon.length > 0 ? (
-                  dataBase.held_by_pokemon.map(({ pokemon }, i) => (
-                    <div key={i} className={styles.pokemonHeld}>
-                      <Link to={`/pokemon/${pokemon.name}`}>
-                        <Image
-                          src={`${urlImage}${pokemon.id}.png`}
-                          alt={textTransform(pokemon.name, "replace")}
-                        />
-                        <p>{textTransform(pokemon.name, "replace")}</p>
-                      </Link>
-                    </div>
-                  ))
+
+              <div className={styles.containerBody}>
+                {dataBase.learned_by_pokemon.length > 0 ? (
+                  <Table data={dataTable} />
                 ) : (
-                  <p>Nenhum pokemon retém esse item.</p>
+                  <p>Nenhum pokemon aprende esse item.</p>
                 )}
               </div>
             </div>

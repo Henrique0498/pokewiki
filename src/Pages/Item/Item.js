@@ -4,11 +4,11 @@ import List from "./List/List";
 import Detail from "./Detail/Detail";
 import { UserContext } from "../../UseContext";
 
-const Berry = () => {
+const Item = () => {
   const { setUpdateBackground } = React.useContext(UserContext);
 
   React.useEffect(() => {
-    setUpdateBackground("berry");
+    setUpdateBackground("item");
   });
   return (
     <Routes>
@@ -18,4 +18,4 @@ const Berry = () => {
   );
 };
 
-export default Berry;
+export default Item;

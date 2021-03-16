@@ -57,7 +57,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/items" activeClassName={styles.active}>
+            <NavLink to="/item" activeClassName={styles.active}>
               {mobile && (
                 <i className={styles.iconMenu}>
                   <Items />
@@ -67,7 +67,7 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/moves" activeClassName={styles.active}>
+            <NavLink to="/move" activeClassName={styles.active}>
               {mobile && (
                 <i className={styles.iconMenu}>
                   <Move />

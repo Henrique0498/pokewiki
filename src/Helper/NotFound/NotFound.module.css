@@ -1,0 +1,55 @@
+.card {
+  width: calc(100% - 10px);
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  margin: 0px 5px 30px;
+  border-radius: 10px 10px 7px 7px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  background-color: var(--white);
+  padding-bottom: 5px;
+  animation: animeBottom 0.15s linear;
+  background-image: url("./../../Assets/Image/Images/notFound/backgroundPokemon.png");
+  background-size: auto 80%;
+  background-repeat: no-repeat;
+  background-position: 95% 95%;
+}
+
+.text {
+  padding-left: 10px;
+  font-size: 30px;
+}
+
+.text404 {
+  width: 100%;
+  text-align: center;
+  font-size: 260px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--white);
+}
+
+.textDescription {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}
+
+@media (max-width: 520px) {
+  .text404 {
+    font-size: 50vw;
+  }
+
+  .card {
+    background-size: auto 60%;
+  }
+}
+
+@media (min-width: 920px) {
+  .card {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

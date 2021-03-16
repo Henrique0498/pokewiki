@@ -1,6 +1,5 @@
 import React from "react";
 import Search from "../../../Components/Search/Search/Search";
-import Background from "./../../../Components/Background/Background";
 import useFetch from "../../../Hooks/useFetch";
 import { POKEMON_GET, SPECIE_POKEMON_GET } from "../../../Services/api";
 import { Link, useParams } from "react-router-dom";

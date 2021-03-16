@@ -19,6 +19,7 @@ export const UserStorage = ({ children }) => {
         setPokeList(json.results);
       }
     }
+
     async function getListBerry() {
       const { url, options } = BERRYS_GET();
       const { json, response } = await request(url, options);

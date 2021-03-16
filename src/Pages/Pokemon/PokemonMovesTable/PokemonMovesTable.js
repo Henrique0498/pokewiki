@@ -183,12 +183,12 @@ const PokemonMovesTable = (data) => {
             moves.map(({ move, version_group_details }) => (
               <tr key={move.name}>
                 <td>
-                  <Link to={`/moves/${move.name}`}>
+                  <Link to={`/move/${move.name}`}>
                     {textTransform(move.name, "replace")}
                   </Link>
                 </td>
                 <td>
-                  <Link to={`/moves/${move.name}`}>
+                  <Link to={`/move/${move.name}`}>
                     {
                       version_group_details[version_group_details.length - 1]
                         .level_learned_at
@@ -196,7 +196,7 @@ const PokemonMovesTable = (data) => {
                   </Link>
                 </td>
                 <td>
-                  <Link to={`/moves/${move.name}`}>
+                  <Link to={`/move/${move.name}`}>
                     {textTransform(
                       version_group_details[version_group_details.length - 1]
                         .move_learn_method.name,

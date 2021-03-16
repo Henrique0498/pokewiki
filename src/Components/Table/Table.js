@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useText from "../../Hooks/useText";
+import Image from "../../Forms/Image/Image";
 import { UserContext } from "../../UseContext";
 import styles from "./Table.module.css";
 
@@ -11,6 +12,7 @@ const Table = ({ data }) => {
     pageActual: 1,
     totalPages: Math.ceil(data.body.length / 10),
     selectPage: false,
+    orderBy: "",
   });
   const { setUpdateBackground } = React.useContext(UserContext);
   const [dataBaseBody, setDataBaseBody] = React.useState(data.body);
@@ -87,7 +89,15 @@ const Table = ({ data }) => {
     (name, value) => {
       let settings = { ...config };
 
-      if (name === "itemsForPage") {
+      if (name === "orderBy") {
+        const validate = settings.orderBy.indexOf("Modified");
+
+        if (validate > 0) {
+          settings.orderBy = data.headers[value];
+        } else {
+          settings.orderBy = `${data.headers[value]} Modified`;
+        }
+      } else if (name === "itemsForPage") {
         const items = config.itemsForPage < 25 ? config.itemsForPage + 5 : 10;
         const page = Math.ceil(data.body.length / items);
 
@@ -110,22 +120,77 @@ const Table = ({ data }) => {
       }
 
       setConfig(settings);
-      window.localStorage.setItem("tableConfig", JSON.stringify(settings));
+      window.localStorage.setItem(
+        `tableConfig${data.localStorage}`,
+        JSON.stringify(settings)
+      );
     },
-    [config, data.body.length, setUpdateBackground]
+    [config, data, setUpdateBackground]
   );
 
   React.useEffect(() => {
-    const configSave = JSON.parse(window.localStorage.getItem("tableConfig"));
+    function handleOrderBy() {
+      let dataModified = dataBaseBody;
+
+      if (!config.orderBy) {
+        dataModified.sort((before, now) => {
+          return before[0] < now[0] ? -1 : before[0] > now[0] ? 1 : 0;
+        });
+      } else {
+        let index = 0;
+        let validate = false;
+
+        if (config.orderBy.indexOf(" Modified") > 0) {
+          data.headers.forEach((value, i) => {
+            if (`${value} Modified` === config.orderBy) {
+              index = i;
+              validate = false;
+            }
+          });
+        } else {
+          index = data.headers.indexOf(config.orderBy);
+          validate = true;
+        }
+
+        if (validate) {
+          dataModified.sort((before, now) => {
+            return before[index] > now[index]
+              ? -1
+              : before[index] < now[index]
+              ? 1
+              : 0;
+          });
+        } else {
+          dataModified.sort((before, now) => {
+            return before[index] < now[index]
+              ? -1
+              : before[index] > now[index]
+              ? 1
+              : 0;
+          });
+        }
+      }
+
+      setDataBaseBody(dataModified);
+      setDataBody(dataModified.slice(0, 10));
+    }
+    handleOrderBy();
+  }, [config.orderBy, data.headers, dataBaseBody]);
+
+  React.useEffect(() => {
+    const configSave = JSON.parse(
+      window.localStorage.getItem(`tableConfig${data.localStorage}`)
+    );
 
     if (configSave) {
       configSave.selectPage = false;
-
       configSave.pageActual = 1;
 
       setConfig(configSave);
     }
-  }, []);
+
+    setUpdateBackground("table");
+  }, [data, setUpdateBackground]);
 
   React.useEffect(() => {
     function goPage() {
@@ -212,13 +277,23 @@ const Table = ({ data }) => {
               return (
                 <th
                   key={i}
-                  className={
+                  onClick={() => head !== "Foto" && handleConfig("orderBy", i)}
+                  className={`${
                     i === 1
                       ? styles.titleLeft
                       : data.mobileTable && i === 2
                       ? styles.columnOption
                       : ""
-                  }
+                  } 
+                      ${
+                        config.orderBy === head
+                          ? styles.headActiveTop
+                          : config.orderBy === `${head} Modified`
+                          ? styles.headActiveBottom
+                          : head !== "Foto"
+                          ? styles.headDisabled
+                          : styles.headPhoto
+                      }`}
                 >
                   {head}
                 </th>
@@ -251,7 +326,7 @@ const Table = ({ data }) => {
                           {data.headers[idTD].toLowerCase() !== "foto" ? (
                             textTransform(value.toString(), "replace")
                           ) : (
-                            <img src={value} alt={data.headers[2]} />
+                            <Image src={value} alt={data.headers[2]} />
                           )}
                         </Link>
                       </td>

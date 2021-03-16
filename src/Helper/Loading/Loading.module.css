@@ -6,16 +6,34 @@
   align-items: center;
 }
 
-.pikachu,
-.pikachu > span {
-  width: 300px;
+.cardLoad {
+  width: 400px;
+  height: 400px;
+  display: grid;
+  grid-template-areas: "frame" "textLoad";
+  grid-template-columns: 1fr;
+  border: none;
+  margin: 0px 5px;
+  border-radius: 10px 10px 7px 7px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  background-color: var(--white);
+}
+
+.frames {
+  width: 400px;
   height: 300px;
+  grid-area: frame;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .frameOne,
 .frameTwo,
 .frameThree,
 .frameFour {
+  width: 300px;
+  height: 300px;
   position: absolute;
   display: block;
   background-position: center;
@@ -38,6 +56,27 @@
 .frameFour {
   background-image: url("./../../Assets/Image/Images/pikachu-frame-3.png");
   animation: frameFour 0.4s infinite linear;
+}
+
+.textLoad {
+  width: 400px;
+  height: 100px;
+  grid-area: textLoad;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+
+.textLoad::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background-color: transparent;
+  border-radius: 50%;
+  margin: 14px 0 0;
+  box-shadow: 0px 0px 0px transparent, 0px 0px 0px transparent;
+  animation: textLoad 2s infinite linear;
 }
 
 @keyframes frameOne {
@@ -89,12 +128,48 @@
   }
 }
 
-@media (max-width: 420px) {
-  .pikachu,
-  .pikachu > span {
-    width: 280px;
-    height: 280px;
+@keyframes textLoad {
+  16% {
+    background-color: var(--black);
+    box-shadow: 0px 0px 0px var(--black), 0px 0px 0px var(--black);
   }
+  32% {
+    box-shadow: 6px 0px 0px var(--black), 6px 0px 0px var(--black);
+  }
+  50% {
+    background-color: var(--black);
+    box-shadow: 6px 0px 0px var(--black), 12px 0px 0px var(--black);
+  }
+  66% {
+    box-shadow: 6px 0px 0px var(--black), 6px 0px 0px var(--black);
+  }
+  82% {
+    background-color: var(--black);
+    box-shadow: 0px 0px 0px var(--black), 0px 0px 0px var(--black);
+  }
+}
+
+@media (max-width: 420px) {
+  .textLoad {
+    height: 50px;
+  }
+
+  .cardLoad {
+    height: 260px;
+  }
+
+  .frames,
+  .frames span {
+    width: 200px;
+    height: 200px;
+  }
+
+  .cardLoad,
+  .frames,
+  .textLoad {
+    width: 260px;
+  }
+
   .frameOne,
   .frameTwo,
   .frameThree,

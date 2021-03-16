@@ -17,7 +17,7 @@ const Detail = () => {
   const { id } = useParams();
   const [loadPage, setLoadPage] = React.useState(true);
   const [dataBase, setDataBase] = React.useState(null);
-  const { textTransform, getText } = useText();
+  const { textTransform } = useText();
   const [urlImage, setUrlImage] = React.useState("");
 
   React.useEffect(() => {
@@ -36,13 +36,13 @@ const Detail = () => {
           setUrlImage(
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
           );
-          setUpdateBackground("berry-profile");
         }
 
         setLoadPage(false);
       }
     }
     getData();
+    setUpdateBackground("berry-profile");
   }, [id, request, setUpdateBackground, textTransform]);
 
   if (error) {
@@ -82,8 +82,11 @@ const Detail = () => {
 
               <div className={styles.contentText}>
                 <p>
-                  {getText(dataBase.name)
-                    ? getText(dataBase.name)
+                  {dataBase.effect_entries
+                    ? textTransform(
+                        dataBase.effect_entries[0].effect,
+                        "translate"
+                      )
                     : "Não possui nenhum efeito."}
                 </p>
               </div>
