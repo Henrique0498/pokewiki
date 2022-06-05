@@ -1,7 +1,14 @@
 import React from "react";
+import { UserContext } from "../../UseContext";
 import styles from "./Loading.module.css";
 
 const Loading = () => {
+  const { setUpdateBackground } = React.useContext(UserContext);
+
+  React.useEffect(() => {
+    setUpdateBackground("loading");
+  }, [setUpdateBackground]);
+
   return (
     <section className={styles.section}>
       <div className={styles.cardLoad}>

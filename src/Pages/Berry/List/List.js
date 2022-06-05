@@ -20,22 +20,24 @@ const List = () => {
 
       if (berryList) {
         berryList.map(async (berry, index) => {
-          const { url, options } = BERRY_GET(`${berry.name}-berry`);
-          const { response, json } = await request(url, options);
+          if (berry.name !== "coba") {
+            const { url, options } = BERRY_GET(`${berry.name}-berry`);
+            const { response, json } = await request(url, options);
 
-          if (response && response.ok) {
-            data.push([index, json.name, json.sprites.default]);
-          }
+            if (response && response.ok) {
+              data.push([index, json.name, json.sprites.default]);
+            }
 
-          if (berryList.length === data.length) {
-            setDataBase({
-              mobileTable: false,
-              pageRedirection: "berry",
-              localStorage: "BerryList",
-              headers: ["ID", "Nome da berry", "Foto"],
-              body: data,
-            });
-            setLoadPage(false);
+            if (berryList.length - 1 === data.length) {
+              setDataBase({
+                mobileTable: false,
+                pageRedirection: "berry",
+                localStorage: "BerryList",
+                headers: ["ID", "Nome da berry", "Foto"],
+                body: data,
+              });
+              setLoadPage(false);
+            }
           }
         });
       }

@@ -29,9 +29,9 @@
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     "type effect"
-    "heldItem heldItem";
+    "heldMove heldMove";
   gap: 10px;
-  padding: 0;
+  padding: 0 10px;
 }
 
 .containerType {
@@ -42,8 +42,8 @@
   grid-area: effect;
 }
 
-.containerHeldItems {
-  grid-area: heldItem;
+.containerHeldMove {
+  grid-area: heldMove;
 }
 
 .container {
@@ -55,7 +55,6 @@
     "body";
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 0 10px;
 }
 
 .titleContainer {
@@ -76,7 +75,7 @@
 .contentNotFound {
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   margin: 0 5px;
 }
 
@@ -109,7 +108,7 @@
     grid-template-areas:
       "type"
       "effect"
-      "heldItem";
+      "heldMove";
   }
 }
 

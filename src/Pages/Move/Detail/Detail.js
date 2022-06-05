@@ -102,16 +102,18 @@ const Detail = () => {
               </div>
             </div>
 
-            <div className={`${styles.container} ${styles.containerHeldItems}`}>
+            <div className={`${styles.container} ${styles.containerHeldMove}`}>
               <h4 className={styles.titleContainer}>
                 Pokemons que retem o item
               </h4>
 
               <div className={styles.containerBody}>
-                {dataBase.learned_by_pokemon.length > 0 ? (
+                {dataBase.learned_by_pokemon.length ? (
                   <Table data={dataTable} />
                 ) : (
-                  <p>Nenhum pokemon aprende esse item.</p>
+                  <p className={styles.contentNotFound}>
+                    Nenhum pokemon aprende esse movimento.
+                  </p>
                 )}
               </div>
             </div>

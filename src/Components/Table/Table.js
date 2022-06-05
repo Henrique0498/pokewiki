@@ -178,21 +178,6 @@ const Table = ({ data }) => {
   }, [config.orderBy, data.headers, dataBaseBody]);
 
   React.useEffect(() => {
-    const configSave = JSON.parse(
-      window.localStorage.getItem(`tableConfig${data.localStorage}`)
-    );
-
-    if (configSave) {
-      configSave.selectPage = false;
-      configSave.pageActual = 1;
-
-      setConfig(configSave);
-    }
-
-    setUpdateBackground("table");
-  }, [data, setUpdateBackground]);
-
-  React.useEffect(() => {
     function goPage() {
       const end = config.pageActual * config.itemsForPage;
       const start = end - config.itemsForPage;
@@ -201,6 +186,7 @@ const Table = ({ data }) => {
         setDataBody(dataBaseBody.slice(start, end));
       }
     }
+
     goPage();
   }, [config.itemsForPage, config.pageActual, dataBaseBody]);
 
@@ -227,6 +213,24 @@ const Table = ({ data }) => {
 
     createOptions();
   }, [config.totalPages, handleConfig]);
+
+  React.useEffect(() => {
+    const configSave = JSON.parse(
+      window.localStorage.getItem(`tableConfig${data.localStorage}`)
+    );
+
+    if (configSave) {
+      configSave.selectPage = false;
+      configSave.pageActual = 1;
+      configSave.totalPages = Math.ceil(
+        data.body.length / configSave.itemsForPage
+      );
+
+      setConfig(configSave);
+    }
+
+    setUpdateBackground("table");
+  }, [data, setUpdateBackground]);
 
   return (
     <div className={styles.body}>
